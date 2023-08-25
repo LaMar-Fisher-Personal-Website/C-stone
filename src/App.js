@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
 import ShopCart from './ShopCart';
+import Login from './Login'; // Create a Login component
 import Checkout from './Checkout'; // Import the Checkout component
 
 function App() {
     // State to manage the cart items
     const [cartItems, setCartItems] = useState([]);
     const [showCheckout, setShowCheckout] = useState(false);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const storedCart = localStorage.getItem('cart');
@@ -32,34 +34,54 @@ function App() {
         }
     };
 
+    const handleLogin = (fakeToken) => {
+        // Here you would perform a login request to the API using the fake token
+        // If the login is successful, set the user state
+        setUser(fakeToken); // For demonstration purposes, setting user directly
+    };
+
+    const handleLogout = () => {
+        // Clear user state and cart data
+        setUser(null);
+        setCartItems([]);
+        localStorage.removeItem('cart');
+    };
+
     // Update local storage whenever cartItems change
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems]);
 
     return (
-        <div>
-            <ProductList addToCart={addToCart} />
-            <ShopCart
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-                addToCart={addToCart}
-            />
-            {showCheckout ? (
-                <div>
-                    <Checkout
-                        cartItems={cartItems}
-                        setCartItems={setCartItems}
-                        addToCart={addToCart}
-                    />
-                    <button onClick={() => setShowCheckout(false)}>Back to Cart</button>
-                </div>
-            ) : (
-                <button onClick={() => setShowCheckout(true)}>Proceed to Checkout</button>
-            )}
-        </div>
-    );
+      <div>
+          {!user ? (
+              <Login onLogin={handleLogin} />
+          ) : (
+              <div>
+                  <h1>Welcome, FullStack Future Grads!</h1>
+                  <ProductList addToCart={addToCart} />
+                  <ShopCart
+                      cartItems={cartItems}
+                      setCartItems={setCartItems}
+                  />
+                  {showCheckout ? (
+                      <div>
+                          <Checkout
+                              cartItems={cartItems}
+                              setCartItems={setCartItems}
+                          />
+                          <button onClick={() => setShowCheckout(false)}>Back to Cart</button>
+                      </div>
+                  ) : (
+                      <button onClick={() => setShowCheckout(true)}>Proceed to Checkout</button>
+                  )}
+                  <button onClick={handleLogout}>Logout</button>
+              </div>
+          )}
+      </div>
+  );
 }
 
 export default App;
+
 
