@@ -32,27 +32,34 @@ function App() {
         }
     };
 
+    // Update local storage whenever cartItems change
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }, [cartItems]);
+
     return (
         <div>
-            {/* Render other parts of your app */}
-            <ProductList cartItems={cartItems} setCartItems={setCartItems} />
-            <ShopCart cartItems={cartItems} />
-          <ProductList addToCart={addToCart} />
+            <ProductList addToCart={addToCart} />
             <ShopCart
                 cartItems={cartItems}
                 setCartItems={setCartItems}
-                addToCart={addToCart} // Pass the addToCart function down
+                addToCart={addToCart}
             />
             {showCheckout ? (
-                <Checkout
-                    cartItems={cartItems}
-                    setCartItems={setCartItems}
-                    addToCart={addToCart} // Pass the addToCart function down
-                />
-            ) : null}
-            <button onClick={() => setShowCheckout(true)}>Proceed to Checkout</button>
+                <div>
+                    <Checkout
+                        cartItems={cartItems}
+                        setCartItems={setCartItems}
+                        addToCart={addToCart}
+                    />
+                    <button onClick={() => setShowCheckout(false)}>Back to Cart</button>
+                </div>
+            ) : (
+                <button onClick={() => setShowCheckout(true)}>Proceed to Checkout</button>
+            )}
         </div>
     );
 }
 
 export default App;
+
