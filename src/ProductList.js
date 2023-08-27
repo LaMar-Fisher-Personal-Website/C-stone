@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function ProductList() {
+function ProductList({ addToCart }) { // Ensure the addToCart prop is received
     const [products, setProducts] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -63,6 +63,7 @@ function ProductList() {
                             <h2>{product.title}</h2>
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
+                            <button onClick={() => addToCart(product)}>Add to Cart</button>
                             <img src={product.image} alt={product.title} style={{ maxWidth: '100px' }} />
                         </li>
                     ))}
