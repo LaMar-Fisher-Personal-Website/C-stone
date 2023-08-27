@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.css'; // Import your CSS file
 
 function Login({ onLogin }) {
     const [token, setToken] = useState('');
@@ -23,24 +24,35 @@ function Login({ onLogin }) {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        Token:
-                        <input
-                            type="text"
-                            value={token}
-                            onChange={handleTokenChange}
-                        />
-                    </label>
+        <div className="section">
+            <span></span>
+            <div className="signin">
+                <div className="content">
+                    <h2>Sign In</h2>
+                    <div className="form">
+                        <div className="inputBox">
+                            <input
+                                type="text"
+                                required
+                                value={token}
+                                onChange={handleTokenChange}
+                            />
+                            <i>Input: fakeToken123</i>
+                        </div>
+                        <div className="inputBox">
+                            <input
+                                type="submit"
+                                value="Login"
+                                onClick={handleSubmit}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <button type="submit">Login</button>
-            </form>
-            {errorMessage && <p>{errorMessage}</p>}
+            </div>
         </div>
     );
 }
 
 export default Login;
+
+

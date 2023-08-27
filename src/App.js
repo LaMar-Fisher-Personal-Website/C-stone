@@ -15,7 +15,9 @@ function App() {
         if (storedCart) {
             setCartItems(JSON.parse(storedCart));
         }
-    }, []); // Empty dependency array ensures this effect runs only once when the component mounts
+    }, []); 
+    
+    // Empty dependency array ensures this effect runs only once when the component mounts
 
     // Function to add an item to the cart
     const addToCart = (product) => {
@@ -58,7 +60,7 @@ function App() {
               <Login onLogin={handleLogin} />
           ) : (
               <div>
-                  <h1>Welcome, FullStack Future Grads!</h1>
+                  <h1>Welcome, Fullstack Academy Future Grads!</h1>
                   <ProductList addToCart={addToCart} />
                   <ShopCart
                       cartItems={cartItems}
@@ -83,5 +85,8 @@ function App() {
 }
 
 export default App;
+
+
+
 
 
