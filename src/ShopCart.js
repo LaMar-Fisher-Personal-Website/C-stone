@@ -46,7 +46,6 @@ function ShopCart({ cartItems, setCartItems }) {
                 {cartItems.map(item => (
                     <li key={item.id}>
                         {item.title} - Quantity: {item.quantity} - Price: ${item.price * item.quantity}
-                        {item.title} - Quantity: {item.quantity} - Price: ${item.price * item.quantity}
                         <button onClick={() => handleIncrementQuantity(item.id)}>+</button>
                         <button onClick={() => handleDecrementQuantity(item.id)}>-</button>
                         <button onClick={() => handleRemoveItem(item.id)}>Remove</button>

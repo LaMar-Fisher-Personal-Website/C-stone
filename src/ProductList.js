@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './style.css'; // Import your CSS file
 
 function ProductList({ addToCart }) { // Ensure the addToCart prop is received
     const [products, setProducts] = useState([]);

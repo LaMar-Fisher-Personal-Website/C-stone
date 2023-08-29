@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.css'; // Import your CSS file
+import styles from './Login.module.css'; // Import the CSS module
 
 function Login({ onLogin }) {
     const [token, setToken] = useState('');
@@ -7,39 +7,43 @@ function Login({ onLogin }) {
 
     const handleTokenChange = (event) => {
         setToken(event.target.value);
+        setErrorMessage(''); // Clear error message when token changes
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Prevent default form submission
 
         // Here, you would typically make an API request to validate the token
         // and perform the login. For the sake of example, let's just validate
         // a hardcoded token "fakeToken123".
 
         if (token === 'fakeToken123') {
-            onLogin(token);
+            onLogin(token); // Call the onLogin callback with the token
         } else {
             setErrorMessage('Invalid token. Please try again.');
         }
     };
 
     return (
-        <div className="section">
+        <section className={styles.section}>
             <span></span>
-            <div className="signin">
-                <div className="content">
-                    <h2>Sign In</h2>
-                    <div className="form">
-                        <div className="inputBox">
+            <div className={`${styles.signin} ${styles.loginContainer}`}>
+                <div className={styles.content}>
+                    <h2>Login In</h2>
+                    <div className={styles.form}>
+                        <div className={styles.inputBox}>
                             <input
                                 type="text"
                                 required
                                 value={token}
                                 onChange={handleTokenChange}
+                                placeholder="Enter token"
                             />
+                        </div>
+                        <div className={styles.instructions}>
                             <i>Input: fakeToken123</i>
                         </div>
-                        <div className="inputBox">
+                        <div className={styles.inputBox}>
                             <input
                                 type="submit"
                                 value="Login"
@@ -49,10 +53,11 @@ function Login({ onLogin }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 
 export default Login;
+
 
 

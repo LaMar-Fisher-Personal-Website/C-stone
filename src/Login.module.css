@@ -1,0 +1,138 @@
+/* Login.module.css */
+
+/* Import fonts and reset styles */
+
+/* Apply the styles to the login section */
+.section {
+    position: absolute;
+    width: 95vw; /* Adjust the width to fit around 80-90% of the screen */
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Center content vertically and horizontally */
+    gap: 20px; /* Adjust the gap between elements */
+    background: none; /* No background here, as it will use the background color from the main container */
+    overflow: hidden; /* Hide the overflow to prevent animation overflow */
+  }
+  
+  /* Apply the animated background gradient */
+  .section::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height:500%;
+    background: linear-gradient(#000, #0f0, #000);
+    animation: animate 10s linear infinite;
+  }
+  
+  /* Define the animation keyframes */
+  @keyframes animate {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  
+  
+  
+  /* Style the login container */
+  .loginContainer {
+    background: #222;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Style the content inside the container */
+  .content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 200px; /* Adjust the gap between elements */
+  }
+  
+  /* Style the form elements */
+  .inputBox {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Style the input */
+  .inputBox input {
+    position: relative;
+    width: 100%;
+    background: #333;
+    border: none;
+    outline: none;
+    padding: 15px 10px; /* Adjust padding */
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1em;
+  }
+  
+  /* Style the icon */
+  .inputBox i {
+    position: absolute;
+    left: 0;
+    padding: 7.5px 10px; /* Adjust padding */
+    font-style: normal;
+    color: #aaa;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  
+  /* Apply the focus and valid state styles */
+  .inputBox input:focus ~ i,
+  .inputBox input:valid ~ i {
+    transform: translateY(-7.5px);
+    font-size: 0.8em;
+    color: #fff;
+  }
+  
+  /* Style the login button */
+  .inputBox input[type="submit"] {
+    padding: 10px;
+    background: #0f0;
+    color: #000;
+    font-weight: 600;
+    font-size: 1.2em; /* Adjust font size */
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+  
+  /* Apply the active state for the submit button */
+  input[type="submit"]:active {
+    opacity: 0.8; /* Adjust opacity */
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 600px) {
+    .section {
+      width: calc(80vw - 2px); /* Adjust the width and keep it responsive */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .section {
+      width: calc(90vw - 2px); /* Adjust the width and keep it responsive */
+    }
+  }
+  
+  /* Adjust layout for smaller screens */
+@media (max-width: 600px) {
+    .section {
+      width: 90vw; /* Adjust the width for smaller screens */
+      height: 70vh; /* Adjust the height for smaller screens */
+    }
+  }
