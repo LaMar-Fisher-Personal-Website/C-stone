@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css'; // Import your CSS file
 
-function ProductList({ addToCart }) { // Ensure the addToCart prop is received
+function ProductList({ addToCart, user }) { // Ensure the addToCart prop is received
     const [products, setProducts] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -64,7 +64,9 @@ function ProductList({ addToCart }) { // Ensure the addToCart prop is received
                             <h2>{product.title}</h2>
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
-                            <button onClick={() => addToCart(product)}>Add to Cart</button>
+                            <button onClick={() => user ? addToCart(product) : alert('Please log in to use the cart features')}>
+    {user ? 'Add to Cart' : 'Log in to Add'}
+</button>
                             <img src={product.image} alt={product.title} style={{ maxWidth: '100px' }} />
                         </li>
                     ))}

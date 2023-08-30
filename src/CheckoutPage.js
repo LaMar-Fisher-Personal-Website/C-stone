@@ -24,6 +24,7 @@ function CheckoutPage({ cartItems, setCartItems }) {
             setConfirmationMessage('');
         }
     };
+    
 
     return (
         <div>
